@@ -1,0 +1,912 @@
+
+:root{
+  --isq-green:#38B449;
+  --isq-orange:#F28B00;
+  --bg:#fff;
+  --muted:#6b7280;
+  --text:#3333333;
+  --border:#e5e7eb;
+  --shadow:0 10px 24px rgba(0,0,0,.06);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+/* Fade from neutral grey for soft load */
+body{opacity:0;background:#fafafa;color:var(--text);font-family:"Open Sans",system-ui,Segoe UI,Roboto,Arial,sans-serif;transition:opacity .8s ease-in-out}
+body.loaded{opacity:1}
+a{color:var(--isq-orange);text-decoration:none}
+a:hover{opacity:.9}
+.topline{height:3px;background:var(--isq-green)}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card.pad{padding:20px}
+h1,h2,h3,h4{font-family:"century-gothic","Avant Garde",Arial,sans-serif;letter-spacing:.01em}
+h1{font-weight:500}
+
+/* Hero */
+.hero{position:relative;height:260px;border-radius:20px;background-size:cover;background-position:center;margin:16px 0 24px;overflow:hidden;box-shadow:var(--shadow)}
+.hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom right,rgba(0,0,0,.35),rgba(0,0,0,.6));display:flex;align-items:flex-end;padding:24px}
+.hero h1{color:#fff;margin:0;text-shadow:0 2px 6px rgba(0,0,0,.45)}
+.hero img.logo{position:absolute;right:20px;bottom:16px;max-width:150px;opacity:.2;pointer-events:none}
+
+.grid{display:grid;gap:24px}
+.grid.cols-2{grid-template-columns:1.3fr .7fr}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width: 960px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
+
+/* Tabs */
+.tabs{display:flex;gap:10px;margin-top:6px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;font-weight:600;border:1px solid var(--border);background:#fff;color:#111}
+.btn.green{background:var(--isq-green);color:#fff;border-color:var(--isq-green)}
+.btn.orange{background:var(--isq-orange);color:#fff;border-color:var(--isq-orange)}
+.btn.ghost{background:#fff;color:#111}
+.btn.active{filter:saturate(1.05)}
+
+/* Tables */
+.table-wrap{overflow:auto;border:1px solid var(--border);border-radius:14px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:960px}
+thead th{background:var(--isq-green);color:#fff;text-align:left;padding:10px 12px}
+tbody td{border-top:1px solid var(--border);padding:10px 12px}
+
+/* Thumbs row */
+.thumb-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.thumb{aspect-ratio:16/9;border-radius:12px;border:1px solid var(--border);background:#f3f3f3;background-size:cover;background-position:center}
+@media (max-width: 960px){.thumb-row{grid-template-columns:1fr 1fr}}
+
+/* Vimeo embeds */
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:var(--shadow);margin:16px 0}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* Breadcrumb */
+.breadcrumb{font-size:.9rem;color:var(--muted);margin:8px 0 12px}
+.breadcrumb a{color:var(--isq-green)}
+
+/* Gallery grid + lightbox */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gallery img{width:100%;height:auto;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);cursor:pointer;transition:transform .25s}
+.gallery img:hover{transform:scale(1.015)}
+@media (max-width: 960px){.gallery{grid-template-columns:1fr 1fr}}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9999}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.lightbox.show{display:flex}
+
+/* Video list on Interviews/Lessons */
+.videos{display:grid;gap:24px}
+
+/* Footer */
+.footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);margin-top:28px;padding-top:16px;color:var(--muted);flex-wrap:wrap;gap:8px}
+.tokens code{background:#f3f4f6;padding:2px 6px;border-radius:6px;border:1px solid var(--border)}
+
+/* ===========================
+   QUICK LINKS CARD
+=========================== */
+.quick-links {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  padding: 32px;
+  margin-top: 0px;
+}
+
+.quick-links h3 {
+  font-family: 'century-gothic', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #111;
+  text-align: left;
+}
+
+.links-grid {
+  display: grid;
+  gap: 14px;
+}
+
+/* ===========================
+   BUTTON BASE
+=========================== */
+.btn {
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  padding: 14px 18px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* ===========================
+   GRADIENT BUTTONS
+=========================== */
+.btn-green {
+  background: linear-gradient(135deg, rgba(56,180,73,0.25) 0%, rgba(56,180,73,0.15) 100%);
+  color: #2d7f3d;
+  border: 1px solid rgba(56,180,73,0.3);
+}
+
+.btn-orange {
+  background: linear-gradient(135deg, rgba(242,139,0,0.25) 0%, rgba(242,139,0,0.15) 100%);
+  color: #a85f00;
+  border: 1px solid rgba(242,139,0,0.3);
+}
+
+/* ===========================
+   HOVER STATES
+=========================== */
+.btn-green:hover {
+  background: linear-gradient(135deg, rgba(56,180,73,0.3) 0%, rgba(56,180,73,0.2) 100%);
+  border-color: rgba(56,180,73,0.5);
+  color: #21612e;
+  transform: translateY(-2px);
+}
+
+.btn-orange:hover {
+  background: linear-gradient(135deg, rgba(242,139,0,0.3) 0%, rgba(242,139,0,0.2) 100%);
+  border-color: rgba(242,139,0,0.5);
+  color: #804700;
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   BUTTON BASE
+=========================== */
+.btn {
+  display: inline-block;
+  text-align: left;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* ===========================
+   BUTTON COLOURS
+=========================== */
+.btn-green {
+  background: rgba(56, 180, 73, 0.2); /* ISQ Green @ 20% alpha */
+  color: #2d7f3d;
+}
+
+.btn-orange {
+  background: rgba(242, 139, 0, 0.2); /* ISQ Orange @ 20% alpha */
+  color: #a85f00;
+}
+
+/* ===========================
+   HOVER STATES
+=========================== */
+.btn-green:hover {
+  background: rgba(56, 180, 73, 0.3);
+  color: #21612e;
+  transform: translateY(-2px);
+}
+
+.btn-orange:hover {
+  background: rgba(242, 139, 0, 0.3);
+  color: #804700;
+  transform: translateY(-2px);
+} 
+/* ===========================
+   1×4 VIDEO GRID
+=========================== */
+.videos-grid.one-row-four {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+
+/* Responsive collapse */
+@media (max-width: 1200px) {
+  .videos-grid.one-row-four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .videos-grid.one-row-four {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Video styling */
+.video-wrap iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.video-wrap iframe:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+}
+/* ===========================
+   LESSONS VIDEO GRID (2×3)
+=========================== */
+.videos-grid.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+
+@media (max-width: 1024px) {
+  .videos-grid.lessons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .videos-grid.lessons-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Video Card */
+.video-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Embedded Video */
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  border-radius: 0;
+}
+
+/* Text beneath videos */
+.video-meta {
+  padding: 14px 16px 18px;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.video-meta h4 {
+  font-family: 'century-gothic', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #111;
+  margin: 0 0 6px;
+}
+
+.video-meta p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+/* ===========================
+   SHARED VIDEO GRID STYLES
+=========================== */
+.videos-grid.lessons-grid,
+.videos-grid.interviews-grid {
+  display: grid;
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.videos-grid.lessons-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+.videos-grid.interviews-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .videos-grid.lessons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .videos-grid.interviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .videos-grid.lessons-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card styling */
+.video-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Video inside card */
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+}
+
+/* Captions beneath */
+.video-meta {
+  padding: 14px 16px 18px;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.video-meta h4 {
+  font-family: 'century-gothic', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #111;
+  margin: 0 0 6px;
+}
+
+.video-meta p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+/* Match primary and secondary tab spacing */
+.tab-panel {
+  margin-top: 20px;
+}
+/* Hide a card if its tab panel inside is hidden (stops the empty white box) */
+.card.pad:has(> .tab-panel[hidden]) { display: none; }
+.videos-grid.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 32px;
+  justify-content: center;
+}
+
+/* Responsive behaviour */
+@media (max-width: 900px) {
+  .videos-grid.lessons-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  display: block;
+}
+
+.video-meta {
+  margin-top: 8px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #333;
+  text-align: left;
+}
+
+.video-meta h4 {
+  font-family: 'century-gothic', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #005680;
+  margin-bottom: 4px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+thead {
+  background-color: #005680;
+  color: #fff;
+  text-align: left;
+}
+
+th, td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+td:nth-child(4) {
+  white-space: normal;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+tbody tr:hover {
+  background-color: #eef6fa;
+}
+/* ======================================================
+   Matthew Flinders – Cognitive Science in Practice
+   Custom Styles (2025-10)
+====================================================== */
+
+/* ----- Shared Video Card Layouts ----- */
+.video-card,
+.video-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 32px;
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  display: block;
+}
+
+.video-meta {
+  margin-top: 8px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.video-meta h4 {
+  font-family: 'century-gothic', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #005680;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 900px) {
+  .videos-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ----- Overlay Text (not currently used) ----- */
+.overlay-text {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0 12px;
+}
+.overlay-text h4 {
+  font-family: 'century-gothic', sans-serif;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  font-size: 1.2rem;
+}
+.overlay-text p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* ----- Split Header Section ----- */
+.split-header {
+  background: #F9FAF9;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  padding: 32px;
+  margin: 24px 0;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  align-items: center;
+}
+.split-header h1 {
+  font-family: 'century-gothic', sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 8px 0;
+}
+.split-header .image img {
+  width: 90%;
+  max-width: 420px;
+  border-radius: 12px;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  margin-left: auto;
+}
+@media (max-width: 900px) {
+  .split-header {
+    grid-template-columns: 1fr;
+  }
+  .split-header .image img {
+    width: 100%;
+    max-width: none;
+    margin: 20px 0 0 0;
+  }
+}
+
+/* ----- Section Headings ----- */
+.section-heading {
+  font-family: 'century-gothic', sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #111;
+  margin-bottom: 8px;
+}
+.section-divider {
+  width: 60px;
+  height: 4px;
+  background: #38B449;
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+
+/* ----- Buttons Row ----- */
+.button-row {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+.button-row .btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.button-row .btn-green {
+  background: #38B449;
+  color: #fff;
+}
+.button-row .btn-green:hover {
+  background: #2E9C3B;
+}
+.button-row .btn-orange {
+  background: #F28B00;
+  color: #fff;
+}
+.button-row .btn-orange:hover {
+  background: #DB7B00;
+}
+
+/* ----- About Section ----- */
+.about-section {
+  background: #F9FAF9;
+  border-radius: 16px;
+  padding: 32px;
+  margin: 60px 0 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+.about-section p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 1em;
+}
+.about-section strong {
+  color: #005680;
+}
+
+/* ----- Utility Text Styles ----- */
+.lede {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #333;
+  margin: 0 0 28px 0;
+}
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.video-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  display: block;
+}
+
+.video-meta {
+  margin-top: 12px;
+}
+
+.section-heading {
+  font-family: "Avant Garde Gothic Pro", sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #111;
+}
+
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background-color: var(--isq-green, #38B449);
+  border-radius: 3px;
+  margin: 12px 0 24px;
+}
+
+.lede {
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+/* ==========================================================
+   FIX: Primary & Secondary Tabs – Unified Video Card Layout
+   (Overrides all earlier .videos-grid, .video-card rules)
+========================================================== */
+
+.tab-panel {
+  margin-top: 0;
+}
+
+/* Unified video grid for interviews + lessons */
+.videos-grid,
+.videos-grid.lessons-grid,
+.videos-grid.interviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .videos-grid,
+  .videos-grid.lessons-grid,
+  .videos-grid.interviews-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* Consistent video card styling */
+.video-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  border-radius: 0;
+  display: block;
+}
+
+/* Matching metadata style */
+.video-meta {
+  padding: 16px;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+}
+
+.video-meta h4 {
+  font-family: 'Avant Garde Gothic Pro', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #005680;
+  margin-bottom: 4px;
+}
+
+.video-meta p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Unified section headings and dividers */
+.section-heading {
+  font-family: "Avant Garde Gothic Pro", sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background-color: var(--isq-green, #38B449);
+  border-radius: 3px;
+  margin: 12px 0 24px;
+}
+
+.lede {
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+/* Ensures both tabs look identical */
+.tab-panel {
+  margin-top: 0;
+}
+
+.videos-grid,
+.videos-grid.lessons-grid,
+.videos-grid.interviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.video-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: #fff;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  display: block;
+}
+
+.video-meta {
+  padding: 16px;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.video-meta h4 {
+  font-family: 'Avant Garde Gothic Pro', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #005680;
+}
+
+.video-meta p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+/* =====================================
+   FORCE PRIMARY/SECONDARY VISUAL MATCH
+===================================== */
+.card.pad {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px;
+  margin-top: 20px;
+}
+
+.tab-panel[hidden] {
+  display: none !important;
+}
+
+/* Remove the buggy hide rule completely */
+.card.pad:has(> .tab-panel[hidden]) {
+  display: block !important;
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.video-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  display: block;
+}
+
+.video-meta {
+  padding: 16px;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+}
+
+.video-meta h4 {
+  font-family: "Avant Garde Gothic Pro", sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #005680;
+  margin-bottom: 4px;
+}
+/* =====================================
+   Fix: Ensure Teacher Interviews appear first
+===================================== */
+.tab-panel .videos:first-of-type {
+  order: 0;
+}
+
+.tab-panel .videos:nth-of-type(2) {
+  order: 1;
+  margin-top: 60px;
+}
+.videos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* spacing between videos */
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: none;
+}
